@@ -56,5 +56,16 @@ namespace Anagram.Models
       }
       return intList;
     }
+
+    public static List<string> ReturnMatches(List<int> intList)
+    {
+      List<string> allWords = GetAllWords();
+      List<string> anagramMatches = new List<string> { };
+      foreach (int index in intList)
+      {
+        anagramMatches.Add(allWords[index]);
+      }
+      return anagramMatches;
+    }
   }
 }

@@ -78,25 +78,25 @@ namespace Anagram.Tests
       Word newWord3 = new Word("bearq");
       List<int> confirmIntList = new List<int> { 1 };
       List<int> matchIntList = Word.CompareAllArrays();
-      Console.WriteLine(confirmIntList);
-      Console.WriteLine(matchIntList);
       CollectionAssert.AreEqual(confirmIntList, matchIntList);
     }
 
+    [TestMethod]
+    public void WordConstructor_ReturnsAnagrams_StringList()
+    {
+      Word newWord = new Word("bread");
+      Word newWord2 = new Word("beard");
+      Word newWord3 = new Word("bearq");
+      List<string> confirmStringList = new List<string> { "beard" };
+      List<int> matchIntList = Word.CompareAllArrays();
+      List<string> anagramMatch = Word.ReturnMatches(matchIntList);
+      CollectionAssert.AreEqual(confirmStringList, anagramMatch);
+
+    }
 
   }
 }
 
 
 
-//2 pathways:
-//path 1 - single word:
-//single word -> charArray
-//charArray alpha sort
 
-//path 2 - list of words:
-//list of charArrays
-//alpha sort each charArray
-
-//compare each charArray in list to single word charArray
-//if match, use index w/in list of charArrays to return anagram words
