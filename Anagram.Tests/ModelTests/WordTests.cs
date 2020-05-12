@@ -1,16 +1,17 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Anagram.Models;
+using System.Collections.Generic;
 
 namespace Anagram.Tests
 {
   [TestClass]
-  public class WordTests //: IDisposable
+  public class WordTests : IDisposable
   {
-    // public void Dispose()
-    // {
-    //   Word.ClearAll();
-    // }
+    public void Dispose()
+    {
+      Word.ClearAll();
+    }
 
     [TestMethod]
     public void WordConstructor_CreatesInstanceOfWord_Word()
@@ -39,6 +40,23 @@ namespace Anagram.Tests
       char[] newWordArraySorted = newWord.GetArray;
       CollectionAssert.AreEqual(breadArray, newWordArraySorted);
     }
+
+    [TestMethod]
+    public void WordConstructor_AddsMultipleWords_Strings()
+    {
+      string breadString = "bread";
+      string beardString = "beard";
+      Word newWord = new Word("bread");
+      Word newWord2 = new Word("beard");
+      List<string> tempList = Word.GetAllWords();
+
+      string tempString = tempList[0];
+      string temporaryString = tempList[1];
+      Assert.AreEqual(breadString, tempString);
+      Assert.AreEqual(beardString, temporaryString);
+    }
+
+
 
   }
 }
