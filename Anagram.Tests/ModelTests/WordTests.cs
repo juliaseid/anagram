@@ -91,7 +91,29 @@ namespace Anagram.Tests
       List<int> matchIntList = Word.CompareAllArrays();
       List<string> anagramMatch = Word.ReturnMatches(matchIntList);
       CollectionAssert.AreEqual(confirmStringList, anagramMatch);
+    }
 
+    [TestMethod]
+    public void WordConstructor_ReturnsPartialAnagrams_StringList()
+    {
+      Word newWord = new Word("bread");
+      Word newWord2 = new Word("beard");
+      Word newWord3 = new Word("bear");
+      Word newWord4 = new Word("bearq");
+      List<string> confirmStringList = new List<string> { "beard", "bear" };
+      List<int> matchIntList = Word.CompareAllArrays();
+      List<string> anagramMatch = Word.ReturnMatches(matchIntList);
+      foreach (int index in matchIntList)
+      {
+        Console.Write(index);
+      }
+
+      foreach (string anagram in anagramMatch)
+      {
+        Console.Write(anagram);
+      }
+
+      CollectionAssert.AreEqual(confirmStringList, anagramMatch);
     }
 
   }

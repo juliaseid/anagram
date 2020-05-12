@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Anagram.Models
 {
@@ -40,11 +41,20 @@ namespace Anagram.Models
       List<char[]> arrayList = GetAllArrays();
       List<int> intList = new List<int> { };
       bool isSame = true;
+
       for (int i = 1; i < arrayList.Count; i++)
       {
         for (int j = 0; j < arrayList[i].Length; j++)
         {
-          if (arrayList[0][j] != arrayList[i][j])
+          int originalLength = arrayList[0].Length;
+          char[] markOffArray = new char[originalLength];
+          arrayList[0].CopyTo(markOffArray, 0);
+          if (markOffArray.Contains(arrayList[i][j]))
+          {
+            int markOffIndex = Array.IndexOf(arrayList[0], arrayList[i][j]);
+            markOffArray[markOffIndex] = '#';
+          }
+          else
           {
             isSame = false;
           }
@@ -57,6 +67,29 @@ namespace Anagram.Models
       return intList;
     }
 
+    // public static List<int> CompareAllArrays()
+    // {
+    //   List<char[]> arrayList = GetAllArrays();
+    //   List<int> intList = new List<int> { };
+    //   bool isSame = true;
+    //   for (int i = 1; i < arrayList.Count; i++)
+    //   {
+    //     for (int j = 0; j < arrayList[i].Length; j++)
+    //     {
+    //       if (arrayList[0][j] != arrayList[i][j])
+    //       {
+    //         isSame = false;
+    //       }
+    //     }
+    //     if (isSame)
+    //     {
+    //       intList.Add(i);
+    //     }
+    //   }
+    //   return intList;
+    // }
+
+
     public static List<string> ReturnMatches(List<int> intList)
     {
       List<string> allWords = GetAllWords();
@@ -67,5 +100,7 @@ namespace Anagram.Models
       }
       return anagramMatches;
     }
+
+
   }
 }
