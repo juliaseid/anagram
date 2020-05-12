@@ -39,15 +39,22 @@ namespace Anagram.Models
     {
       List<char[]> arrayList = GetAllArrays();
       List<int> intList = new List<int> { };
+      bool isSame = true;
       for (int i = 1; i < arrayList.Count; i++)
       {
-        if (arrayList[i] == arrayList[0])
+        for (int j = 0; j < arrayList[i].Length; j++)
+        {
+          if (arrayList[0][j] != arrayList[i][j])
+          {
+            isSame = false;
+          }
+        }
+        if (isSame)
         {
           intList.Add(i);
         }
       }
       return intList;
     }
-
   }
 }

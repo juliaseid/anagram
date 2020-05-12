@@ -78,6 +78,8 @@ namespace Anagram.Tests
       Word newWord3 = new Word("bearq");
       List<int> confirmIntList = new List<int> { 1 };
       List<int> matchIntList = Word.CompareAllArrays();
+      Console.WriteLine(confirmIntList);
+      Console.WriteLine(matchIntList);
       CollectionAssert.AreEqual(confirmIntList, matchIntList);
     }
 
