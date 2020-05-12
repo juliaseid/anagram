@@ -7,7 +7,9 @@ namespace Anagram.Models
     public char[] GetArray { get; set; }
     public Word(string word)
     {
-      GetArray = word.ToCharArray();
+      char[] TempArray = word.ToCharArray();
+      Array.Sort(TempArray);
+      GetArray = TempArray;
     }
   }
 }
