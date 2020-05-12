@@ -34,5 +34,20 @@ namespace Anagram.Models
       _words.Clear();
       _instances.Clear();
     }
+
+    public static List<int> CompareAllArrays()
+    {
+      List<char[]> arrayList = GetAllArrays();
+      List<int> intList = new List<int> { };
+      for (int i = 1; i < arrayList.Count; i++)
+      {
+        if (arrayList[i] == arrayList[0])
+        {
+          intList.Add(i);
+        }
+      }
+      return intList;
+    }
+
   }
 }

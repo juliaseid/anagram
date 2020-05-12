@@ -56,6 +56,30 @@ namespace Anagram.Tests
       Assert.AreEqual(beardString, temporaryString);
     }
 
+    [TestMethod]
+    public void WordConstructor_AddsMultipleWords_CharArrays()
+    {
+      char[] breadArray = { 'a', 'b', 'd', 'e', 'r' };
+      char[] beardArray = { 'a', 'b', 'd', 'e', 'r' };
+      Word newWord = new Word("bread");
+      Word newWord2 = new Word("beard");
+      List<char[]> tempArrayList = Word.GetAllArrays();
+      char[] temp1 = tempArrayList[0];
+      char[] temp2 = tempArrayList[1];
+      CollectionAssert.AreEqual(breadArray, temp1);
+      CollectionAssert.AreEqual(beardArray, temp2);
+    }
+
+    [TestMethod]
+    public void WordConstuctor_ComparesCharArrayList_IntList()
+    {
+      Word newWord = new Word("bread");
+      Word newWord2 = new Word("beard");
+      Word newWord3 = new Word("bearq");
+      List<int> confirmIntList = new List<int> { 1 };
+      List<int> matchIntList = Word.CompareAllArrays();
+      CollectionAssert.AreEqual(confirmIntList, matchIntList);
+    }
 
 
   }
