@@ -6,19 +6,25 @@ namespace Anagram.Models
 {
   public class Word
   {
-    public char[] GetArray { get; set; }
 
     private static List<string> _words = new List<string> { };
     private static List<char[]> _instances = new List<char[]> { };
-    public Word(string word)
+    public static List<string> anagramMatches = new List<string> { };
+    public static string BaseWord {get;set;}
+
+    public static string GetBaseWord(string word)
+    {
+      BaseWord = word;
+      return BaseWord;
+    }
+
+    public static List<char[]> CompareWord(string word)
     {
       _words.Add(word);
-
       char[] TempArray = word.ToCharArray();
       Array.Sort(TempArray);
-      GetArray = TempArray;
-
       _instances.Add(TempArray);
+      return _instances;
     }
 
     public static List<string> GetAllWords()
@@ -71,13 +77,19 @@ namespace Anagram.Models
     public static List<string> ReturnMatches(List<int> intList)
     {
       List<string> allWords = GetAllWords();
-      List<string> anagramMatches = new List<string> { };
-      foreach (int index in intList)
+      List<int> intList2 = Word.CompareAllArrays();
+      foreach (int index in intList2)
       {
         anagramMatches.Add(allWords[index]);
       }
       return anagramMatches;
     }
+
+    // public static string MatchesAsString(List<string> matches)
+    // {
+    //   string matchString = String.Join(String.Empty, matches.ToArray());
+    //   return matchString;
+    // }
 
 
   }

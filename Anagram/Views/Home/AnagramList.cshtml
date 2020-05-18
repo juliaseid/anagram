@@ -1,0 +1,24 @@
+@using Anagram.Models;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+    <title>Anagram Finder</title>
+
+</head>
+<body>
+  <div class="container">
+  <h4>Your Word: @Model.BaseWord </h4>
+  <h5>Your Anagrams:</h5> 
+  <ul>
+  @foreach (string match in Model.Word.anagramMatches)
+  {
+    <li>@match</li>
+  } 
+  </ul>
+
+  </div>
+</body>
+</html>
